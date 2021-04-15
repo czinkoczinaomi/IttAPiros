@@ -5,6 +5,9 @@
  */
 package ittapiros;
 
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Nami
@@ -14,8 +17,13 @@ public class felulet extends javax.swing.JFrame {
     /**
      * Creates new form felulet
      */
+    private int golyo;
+    private int hanyPohar;
     public felulet() {
         initComponents();
+        hanyPohar=3;
+        elhelyez(hanyPohar);
+        
     }
 
     /**
@@ -27,24 +35,62 @@ public class felulet extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        btnPohar1 = new javax.swing.JButton();
+        btnPohar2 = new javax.swing.JButton();
+        btnPohar3 = new javax.swing.JButton();
+        lbTipp = new javax.swing.JLabel();
+        ckUjHely = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        mnuMentes = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        mniBetoltes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mniUjJatek = new javax.swing.JMenuItem();
+        mni3Pohar = new javax.swing.JMenuItem();
+        mni4Pohar = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnPohar1.setText("pohár");
+        btnPohar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPohar1ActionPerformed(evt);
+            }
+        });
+
+        btnPohar2.setText("pohár");
+        btnPohar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPohar2ActionPerformed(evt);
+            }
+        });
+
+        btnPohar3.setText("pohár");
+        btnPohar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPohar3ActionPerformed(evt);
+            }
+        });
+
+        lbTipp.setText("játékos tippje: ");
+
+        ckUjHely.setText("tippelésenként új helyre kerüljön a golyó");
+
         jMenu1.setText("Fájl");
 
-        jMenu3.setText("mentés");
-        jMenu1.add(jMenu3);
+        mnuMentes.setText("mentés");
+        jMenu1.add(mnuMentes);
 
-        jMenuItem1.setText("betöltés");
-        jMenu1.add(jMenuItem1);
+        jMenuItem2.setText("mentés");
+        jMenu1.add(jMenuItem2);
+
+        mniBetoltes.setText("betöltés");
+        jMenu1.add(mniBetoltes);
 
         jMenuBar1.add(jMenu1);
 
@@ -53,11 +99,29 @@ public class felulet extends javax.swing.JFrame {
         jMenu4.setText("új játék");
         jMenu2.add(jMenu4);
 
-        jMenuItem2.setText("jMenuItem2");
-        jMenu2.add(jMenuItem2);
+        mniUjJatek.setText("uj játék");
+        mniUjJatek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniUjJatekActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniUjJatek);
 
-        jMenuItem3.setText("jMenuItem3");
-        jMenu2.add(jMenuItem3);
+        mni3Pohar.setText("3 pohár");
+        mni3Pohar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni3PoharActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni3Pohar);
+
+        mni4Pohar.setText("4 pohár");
+        mni4Pohar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mni4PoharActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mni4Pohar);
 
         jMenuBar1.add(jMenu2);
 
@@ -67,15 +131,83 @@ public class felulet extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ckUjHely)
+                    .addComponent(lbTipp)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPohar1)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnPohar2)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnPohar3)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPohar1)
+                    .addComponent(btnPohar2)
+                    .addComponent(btnPohar3))
+                .addGap(19, 19, 19)
+                .addComponent(ckUjHely)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbTipp)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mni4PoharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni4PoharActionPerformed
+        JOptionPane.showMessageDialog(this, "Jelenleg nem elérhető!");
+    }//GEN-LAST:event_mni4PoharActionPerformed
+
+    private void btnPohar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPohar1ActionPerformed
+        if(golyo==0){
+         lbTipp.setText("játékos tippje: talált");
+        }else{
+            lbTipp.setText("játékos tippje: nem talált");
+        }
+        if(ckUjHely.isSelected()){
+            elhelyez(hanyPohar);
+        }
+    }//GEN-LAST:event_btnPohar1ActionPerformed
+
+    private void btnPohar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPohar2ActionPerformed
+         if(golyo==1){
+         lbTipp.setText("játékos tippje: talált");
+        }else{
+            lbTipp.setText("játékos tippje: nem talált");
+        }
+         if(ckUjHely.isSelected()){
+            elhelyez(hanyPohar);
+        }
+         
+    }//GEN-LAST:event_btnPohar2ActionPerformed
+
+    private void btnPohar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPohar3ActionPerformed
+         if(golyo==2){
+         lbTipp.setText("játékos tippje: talált");
+        }else{
+            lbTipp.setText("játékos tippje: nem talált");
+        }
+         if(ckUjHely.isSelected()){
+            elhelyez(hanyPohar);
+        }
+    }//GEN-LAST:event_btnPohar3ActionPerformed
+
+    private void mni3PoharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni3PoharActionPerformed
+        hanyPohar=3;
+    }//GEN-LAST:event_mni3PoharActionPerformed
+
+    private void mniUjJatekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniUjJatekActionPerformed
+       elhelyez(hanyPohar);
+       lbTipp.setText("játékos tippje:");
+    }//GEN-LAST:event_mniUjJatekActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,13 +245,29 @@ public class felulet extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPohar1;
+    private javax.swing.JButton btnPohar2;
+    private javax.swing.JButton btnPohar3;
+    private javax.swing.JCheckBox ckUjHely;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JLabel lbTipp;
+    private javax.swing.JMenuItem mni3Pohar;
+    private javax.swing.JMenuItem mni4Pohar;
+    private javax.swing.JMenuItem mniBetoltes;
+    private javax.swing.JMenuItem mniUjJatek;
+    private javax.swing.JMenu mnuMentes;
     // End of variables declaration//GEN-END:variables
+
+    private void elhelyez(int mennyi) {
+        Random rand = new Random();
+        golyo = rand.nextInt(mennyi);
+//        golyo=((int)Math.random()*mennyi+1);
+        //System.out.println(golyo);
+        
+    }
 }
