@@ -5,6 +5,15 @@
  */
 package ittapiros;
 
+
+
+import java.io.IOException;
+import java.nio.file.Files;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
@@ -19,10 +28,17 @@ public class felulet extends javax.swing.JFrame {
      */
     private int golyo;
     private int hanyPohar;
+    private Path fajl=Paths.get("jatek.txt");
+    private Path tippFajl=Paths.get("tipp.dep");
     public felulet() {
         initComponents();
-        hanyPohar=3;
+         hanyPohar=3;
         elhelyez(hanyPohar);
+        if(Files.exists(tippFajl)){
+            this.setTitle("A "+golyo+" pohár alatt van a golyó");
+        }
+       
+
         
     }
 
@@ -36,6 +52,7 @@ public class felulet extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         btnPohar1 = new javax.swing.JButton();
         btnPohar2 = new javax.swing.JButton();
         btnPohar3 = new javax.swing.JButton();
@@ -44,7 +61,7 @@ public class felulet extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuMentes = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mniMentes = new javax.swing.JMenuItem();
         mniBetoltes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -53,6 +70,8 @@ public class felulet extends javax.swing.JFrame {
         mni4Pohar = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,10 +105,20 @@ public class felulet extends javax.swing.JFrame {
         mnuMentes.setText("mentés");
         jMenu1.add(mnuMentes);
 
-        jMenuItem2.setText("mentés");
-        jMenu1.add(jMenuItem2);
+        mniMentes.setText("mentés");
+        mniMentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniMentesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mniMentes);
 
         mniBetoltes.setText("betöltés");
+        mniBetoltes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniBetoltesActionPerformed(evt);
+            }
+        });
         jMenu1.add(mniBetoltes);
 
         jMenuBar1.add(jMenu1);
@@ -209,6 +238,33 @@ public class felulet extends javax.swing.JFrame {
        lbTipp.setText("játékos tippje:");
     }//GEN-LAST:event_mniUjJatekActionPerformed
 
+    private void mniMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniMentesActionPerformed
+        String txt="Golyó helye; poharak száma\n"+golyo+"; "+hanyPohar;
+        
+        /*Files.write(fajl, );*/
+    }//GEN-LAST:event_mniMentesActionPerformed
+
+    private void mniBetoltesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniBetoltesActionPerformed
+       if(Files.exists(tippFajl)){
+            this.setTitle("A "+golyo+" pohár alatt van a golyó");
+        }
+        List<String> sor;
+       ArrayList<Jatek> jatek=new ArrayList<>();
+        try {
+            sor=Files.readAllLines(fajl);
+            for (int i = 1; i < sor.size(); i++) {
+            jatek.add(new Jatek(sor.get(i)));
+        }
+        } catch (IOException ex) {
+           ;
+        }
+        for (int i = 0; i < jatek.size(); i++) {
+          golyo=jatek.get(i).getGolyo();
+          hanyPohar=jatek.get(i).getHanyPohar();
+        }
+        
+    }//GEN-LAST:event_mniBetoltesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,11 +310,12 @@ public class felulet extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel lbTipp;
     private javax.swing.JMenuItem mni3Pohar;
     private javax.swing.JMenuItem mni4Pohar;
     private javax.swing.JMenuItem mniBetoltes;
+    private javax.swing.JMenuItem mniMentes;
     private javax.swing.JMenuItem mniUjJatek;
     private javax.swing.JMenu mnuMentes;
     // End of variables declaration//GEN-END:variables
